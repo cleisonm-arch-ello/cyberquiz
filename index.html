@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="CyberQuiz — teste seus conhecimentos em cibersegurança." />
+  <title>CyberQuiz</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <main class="app" id="app">
+
+    <!-- ===================== TELA: CADASTRO ===================== -->
+    <section class="screen screen--active" id="screen-start" aria-labelledby="start-title">
+      <header class="brand">
+        <div class="brand__logo" aria-hidden="true">
+          <span class="brand__bracket">[</span>
+          <span class="brand__shield">&#128274;</span>
+          <span class="brand__bracket">]</span>
+        </div>
+        <h1 class="brand__name" id="start-title">Cyber<span>Quiz</span></h1>
+        <p class="brand__tagline" id="tagline">Teste seus conhecimentos em Cibersegurança</p>
+      </header>
+
+      <form id="form-start" class="card" novalidate>
+        <label class="field">
+          <span class="field__label">Nome</span>
+          <input type="text" id="input-name" name="name" autocomplete="name"
+                 placeholder="Seu nome" required maxlength="80" />
+          <span class="field__error" id="err-name"></span>
+        </label>
+
+        <label class="field">
+          <span class="field__label">E-mail</span>
+          <input type="email" id="input-email" name="email" autocomplete="email"
+                 placeholder="voce@exemplo.com" required maxlength="120" />
+          <span class="field__error" id="err-email"></span>
+        </label>
+
+        <div class="notice" id="geo-notice">
+          <span class="notice__icon" aria-hidden="true">&#128205;</span>
+          <p>Ao iniciar, seu navegador pedirá permissão para compartilhar a
+             localização. A coleta é feita <strong>apenas</strong> para identificar a
+             distribuição demográfica dos resultados, a sua colaboração
+             <strong>ajuda muito</strong> nos resultados. Muito obrigado.</p>
+        </div>
+
+        <button type="submit" class="btn btn--primary" id="btn-start">
+          Iniciar quiz
+        </button>
+        <p class="meta" id="pool-meta"></p>
+      </form>
+    </section>
+
+    <!-- ===================== TELA: QUIZ ===================== -->
+    <section class="screen" id="screen-quiz" aria-labelledby="q-text" hidden>
+      <div class="quiz-top">
+        <div class="progress">
+          <div class="progress__bar"><span id="progress-fill"></span></div>
+          <div class="progress__meta">
+            <span id="q-counter">1 / 10</span>
+            <span class="diff-badge" id="q-diff">Básica</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card--quiz">
+        <p class="q-topic" id="q-topic"></p>
+        <h2 class="q-text" id="q-text"></h2>
+        <ul class="options" id="options" role="listbox" aria-label="Alternativas"></ul>
+      </div>
+
+      <button class="btn btn--primary" id="btn-next" disabled>Confirmar</button>
+    </section>
+
+    <!-- ===================== TELA: RESULTADO ===================== -->
+    <section class="screen" id="screen-result" aria-labelledby="result-title" hidden>
+      <div class="card card--result">
+        <div class="score-ring" id="score-ring">
+          <span class="score-ring__num" id="score-num">0</span>
+          <span class="score-ring__den" id="score-den">/ 0</span>
+        </div>
+        <h2 class="result__title" id="result-title">Resultado</h2>
+        <p class="result__msg" id="result-msg"></p>
+
+        <ul class="result__stats" id="result-stats"></ul>
+
+        <button class="btn btn--ghost" id="btn-restart">Jogar novamente</button>
+        <p class="meta" id="send-status"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== MODAL: MENSAGEM SECRETA ===================== -->
+  <div class="modal" id="secret-modal" hidden role="dialog" aria-modal="true" aria-labelledby="secret-title">
+    <div class="modal__box">
+      <h3 class="modal__title" id="secret-title">Mensagem</h3>
+      <div class="modal__body" id="secret-body"></div>
+      <button class="btn btn--primary" id="secret-read">Read</button>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span id="foot-brand">CyberQuiz</span>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
